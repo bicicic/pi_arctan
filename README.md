@@ -1,6 +1,6 @@
 # pi_arctan
 
-Machin型（arctan型）の円周率公式を探索し、計算性能を測定するRust製ツールです。
+Machin型（arctan型）の円周率公式を探索するRust製ツールです。
 
 ```text
 pi/4 = sum(c_i * atan(1 / n_i))
@@ -75,16 +75,6 @@ python3 -m http.server 8000 --directory docs
 ```
 
 起動後、ブラウザで <http://localhost:8000> を開きます。
-
-### GitHub Pagesへの公開
-
-GitHubリポジトリの **Settings → Pages** を開き、次のように設定します。
-
-1. **Source**で **Deploy from a branch** を選択します。
-2. 公開するブランチを選択します。
-3. 公開ディレクトリとして `/docs` を選択します。
-
-`docs/.nojekyll` を配置しているため、生成された `pkg` 内のファイルはGitHub Pagesでもそのまま配信されます。
 
 ## 探索方式の使い分け
 
