@@ -1,0 +1,25 @@
+[package]
+name = "pi_arctan"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+js-sys = "0.3"
+num-bigint = "0.4"
+num-integer = "0.1"
+num-traits = "0.2"
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+wasm-bindgen = "0.2"
+
+[profile.release]
+lto = true
+opt-level = "s"
+codegen-units = 1
+strip = true

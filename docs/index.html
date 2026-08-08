@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="PSLQ法でMachin型円周率公式を探索するWebAssemblyアプリ">
+    <title>arctan型の円周率公式の探索</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>arctan型の<span>円周率公式の探索</span></h1>
+        <p class="lead">候補となる分母を入力し、ブラウザ上のRust/WASMでMachin型公式を探索します。</p>
+      </header>
+
+      <section class="workspace" aria-labelledby="search-heading">
+        <form id="search-form">
+          <h2 id="search-heading">探索条件</h2>
+          <label>
+            <span>分母</span>
+            <input id="denominators" name="denominators" value="2-10" required>
+            <small>カンマ区切り、または <code>2-10</code> の範囲記法</small>
+          </label>
+          <div class="grid">
+            <label>
+              <span>探索方式</span>
+              <select id="mode" name="mode">
+                <option value="exact" selected>厳密全探索</option>
+                <option value="pslq">PSLQ候補探索</option>
+              </select>
+            </label>
+            <label>
+              <span>最大項数</span>
+              <input id="max-terms" name="maxTerms" type="number" min="1" max="8" value="4" required>
+            </label>
+            <label>
+              <span>精度（10進桁）</span>
+              <input id="precision" name="precision" type="number" min="20" max="2000" value="100" required>
+            </label>
+            <label>
+              <span>係数上限</span>
+              <input id="max-coeff" name="maxCoeff" type="number" min="1" max="4294967295" value="4" required>
+            </label>
+            <label>
+              <span>反復上限</span>
+              <input id="max-iterations" name="maxIterations" type="number" min="1" max="4294967295" value="10000" required>
+            </label>
+          </div>
+          <button class="primary" id="submit" type="submit">全探索を開始</button>
+        </form>
+
+        <section class="result" aria-live="polite" aria-busy="false">
+          <div class="result-heading">
+            <h2>探索結果</h2>
+            <span id="status" class="status">待機中</span>
+          </div>
+          <div id="progress-panel" class="progress-panel" hidden>
+            <div class="progress-copy">
+              <span id="progress-message">探索を準備しています。</span>
+              <span id="progress-count"></span>
+            </div>
+            <progress id="progress-bar" max="100" value="0"></progress>
+          </div>
+          <div id="discoveries" class="discoveries" hidden>
+            <h3>発見した公式</h3>
+            <ol id="formula-list"></ol>
+          </div>
+          <div id="result-empty" class="empty">条件を設定して探索を開始してください。</div>
+          <div id="result-content" hidden>
+            <p id="note" class="note"></p>
+            <dl id="metrics"></dl>
+            <details>
+              <summary>JSON結果</summary>
+              <pre id="json"></pre>
+            </details>
+          </div>
+        </section>
+      </section>
+
+      <footer>計算はすべて端末内で実行され、入力は外部へ送信されません。</footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

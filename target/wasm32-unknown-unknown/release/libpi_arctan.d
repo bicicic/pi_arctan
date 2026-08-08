@@ -1,0 +1,1 @@
+/home/takashi/pi_arctan/target/wasm32-unknown-unknown/release/libpi_arctan.rlib: /home/takashi/pi_arctan/src/core.rs /home/takashi/pi_arctan/src/exact.rs /home/takashi/pi_arctan/src/lib.rs /home/takashi/pi_arctan/src/machin.rs /home/takashi/pi_arctan/src/pslq.rs
